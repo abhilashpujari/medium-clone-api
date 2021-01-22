@@ -18,7 +18,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
-    "allowJs": true
+    "allowJs": true,
+    "strictPropertyInitialization": false
   },
   "include": [
     "src/**/*"
