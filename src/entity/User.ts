@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate} from "typeorm";
+import Utils from "../utils/Utils";
 
 @Entity('users')
 export class User {
@@ -15,5 +16,16 @@ export class User {
     image: string;
 
     @Column()
+    password: string;
+
+    @Column()
     username: string;
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    async hashPassword(): Promise<void> {
+        if (this.password) {
+            this.password = await Utils.hashPassword(this.password);
+        }
+    }
 }

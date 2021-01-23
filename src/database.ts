@@ -1,13 +1,13 @@
 import "reflect-metadata";
 import {createConnection} from "typeorm";
 
-async function initDB() {
+async function initDB(): Promise<void> {
     try {
         console.log('Started creating database...');
 
         // @ts-ignore
         await createConnection({
-            type: process.env.DATABASE_DRIVER,
+            type: process.env.DATABASE_TYPE,
             url: process.env.DATABASE_URL,
             entities: [
                 __dirname + "/entity/*.ts"
