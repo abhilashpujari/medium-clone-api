@@ -1,4 +1,6 @@
-const create = async (req, res) => {
+import {Request, Response} from "express";
+
+const create = async (req: Request, res: Response) => {
     res.json({
         message: 'Create Article....'
     });

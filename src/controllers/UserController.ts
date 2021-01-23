@@ -1,4 +1,6 @@
-const login = async (req, res) => {
+import {Request, Response} from "express";
+
+const login = async (req: Request, res: Response) => {
     res.json({
         message: 'Login routes....'
     });
