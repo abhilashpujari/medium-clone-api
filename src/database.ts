@@ -1,12 +1,12 @@
 import "reflect-metadata";
-import {createConnection} from "typeorm";
+import {Connection, createConnection} from "typeorm";
 
-async function initDB(): Promise<void> {
+async function initDB(): Promise<Connection> {
     try {
         console.log('Started creating database...');
 
         // @ts-ignore
-        await createConnection({
+        let connection = await createConnection({
             type: process.env.DATABASE_TYPE,
             url: process.env.DATABASE_URL,
             entities: [
@@ -17,8 +17,11 @@ async function initDB(): Promise<void> {
         });
 
         console.log('Done creating database...');
+
+        return connection;
     } catch (e) {
-        console.log(e.message);
+        console.log('Error while creating database connection:: ', e.message);
+        process.exit(1);
     }
 }
 

@@ -17,9 +17,16 @@ app.use(bodyParser.json());
 // Initialize routes
 app.use('/api', routes);
 
-app.listen(PORT, async () => {
-   console.log(`Listening on PORT ${PORT}`);
-
-   // initialize the database connection
-   await initDB();
+// Handle 404 - Keep this as a last route
+app.use(function(req, res, next) {
+    res.status(404);
+    res.json('404: Route Not Found');
 });
+
+// Initialize database connection
+initDB()
+    .then((connection) => {
+        app.listen(PORT, async () => {
+            console.log(`Server listening on PORT ${PORT}`);
+        });
+    });

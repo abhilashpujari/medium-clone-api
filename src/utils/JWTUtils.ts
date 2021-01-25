@@ -16,7 +16,7 @@ class JWTUtils {
         }
     }
 
-    async decode(token): Promise<object | null> {
+    async decode(token: string): Promise<object | null> {
         try {
             return await jwt.verify(token, process.env.JWT_SECRET);
         } catch (e) {
