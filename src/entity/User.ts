@@ -6,7 +6,7 @@ export class User {
     @Column('text')
     bio: string;
 
-    @Column()
+    @Column({unique: true})
     email: string;
 
     @PrimaryGeneratedColumn()
@@ -18,7 +18,7 @@ export class User {
     @Column()
     password: string;
 
-    @Column()
+    @Column({unique: true})
     username: string;
 
     @BeforeInsert()

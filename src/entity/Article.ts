@@ -1,12 +1,25 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    ManyToOne,
+    CreateDateColumn,
+    UpdateDateColumn,
+    ManyToMany, JoinTable
+} from "typeorm";
 import {User} from "./User";
+import {Tag} from "./Tag";
 
 @Entity('articles')
 export class Article {
     @Column('text')
     body: string;
 
+    @CreateDateColumn()
+    createdAt: string;
+
     @Column({
+        type: "varchar",
         length: 255
     })
     description: string;
@@ -17,12 +30,25 @@ export class Article {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({
+        type: "varchar",
+        length: 50
+    })
     slug: string;
 
-    @Column()
+    @Column({
+        type: "varchar",
+        length: 255
+    })
     title: string;
+
+    @UpdateDateColumn()
+    updatedAt: string;
 
     @ManyToOne(() => User)
     author: User;
+
+    @ManyToMany(() => Tag)
+    @JoinTable()
+    tagList: Tag[];
 }

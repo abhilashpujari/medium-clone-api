@@ -12,7 +12,7 @@ async function initDB(): Promise<Connection> {
             entities: [
                 __dirname + "/entity/*.ts"
             ],
-            synchronize: true,
+            synchronize: process.env.NODE_ENV === 'development',
             logging: false
         });
 
