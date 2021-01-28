@@ -3,7 +3,7 @@ import {Connection, createConnection} from "typeorm";
 
 async function initDB(): Promise<Connection> {
     try {
-        console.log('Started creating database...');
+        console.log('Connecting to database...');
 
         // @ts-ignore
         let connection = await createConnection({
@@ -16,11 +16,11 @@ async function initDB(): Promise<Connection> {
             logging: false
         });
 
-        console.log('Done creating database...');
+        console.log('Database connected successfully...');
 
         return connection;
     } catch (e) {
-        console.log('Error while creating database connection:: ', e.message);
+        console.log('Error while creating database connection');
         process.exit(1);
     }
 }

@@ -1,16 +1,20 @@
 import express from "express";
 import UserController from "../controllers/UserController";
 import ArticleController from "../controllers/ArticleController";
+import validateData from "../middlewares/validateData";
+import UserValidation from "../validations/UserValidation";
 
 const router = express.Router();
 
 // User Login
-router.route('/users/login').post(UserController.login);
+router.post('/users/login', UserController.login);
 
 // User register
-router.route('/users').post(UserController.register);
+router.post('/users', (req, res, next) => {
+    validateData(UserValidation.registerSchema, req.body.user)(req, res, next);
+}, UserController.register);
 
 // Article create
-router.route('/articles').post(ArticleController.create);
+router.post('/articles', ArticleController.create);
 
 export default router;

@@ -4,6 +4,7 @@ import express from 'express';
 import initDB from "./database";
 
 import routes from './routes/index';
+import errorHandler from "./middlewares/errorHandler";
 
 // Loads environment variables from .env file
 dotenv.config();
@@ -18,10 +19,7 @@ app.use(bodyParser.json());
 app.use('/api', routes);
 
 // Handle 404 - Keep this as a last route
-app.use(function(req, res, next) {
-    res.status(404);
-    res.json('404: Route Not Found');
-});
+app.use(errorHandler);
 
 // Initialize database connection
 initDB()
