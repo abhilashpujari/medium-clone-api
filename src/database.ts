@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import {Connection, createConnection} from "typeorm";
+import logger from "./logger";
 
 async function initDB(): Promise<Connection> {
     try {
@@ -21,6 +22,7 @@ async function initDB(): Promise<Connection> {
         return connection;
     } catch (e) {
         console.log('Error while creating database connection');
+        logger.error(e.message);
         process.exit(1);
     }
 }
