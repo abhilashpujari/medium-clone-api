@@ -3,7 +3,7 @@ import Utils from "../utils/Utils";
 
 @Entity('users')
 export class User {
-    @Column('text')
+    @Column({type: 'text', nullable: true})
     bio: string;
 
     @Column({unique: true})
@@ -12,7 +12,7 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({nullable: true})
     image: string;
 
     @Column()

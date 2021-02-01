@@ -7,12 +7,10 @@ import UserValidation from "../validations/UserValidation";
 const router = express.Router();
 
 // User Login
-router.post('/users/login', UserController.login);
+router.post('/users/login', validateData(UserValidation.loginSchema), UserController.login);
 
 // User register
-router.post('/users', (req, res, next) => {
-    validateData(UserValidation.registerSchema, req.body.user)(req, res, next);
-}, UserController.register);
+router.post('/users', validateData(UserValidation.registerSchema), UserController.register);
 
 // Article create
 router.post('/articles', ArticleController.create);
