@@ -7,7 +7,7 @@ interface User {
 
 class JWTUtils {
 
-    async generateToken(data: User): Promise<string | null> {
+    static async generateToken(data: User): Promise<string | null> {
         try {
             return await jwt.sign(data, process.env.JWT_SECRET);
         } catch (e) {
@@ -16,7 +16,7 @@ class JWTUtils {
         }
     }
 
-    async decode(token: string): Promise<object | null> {
+    static async decode(token: string): Promise<object | null> {
         try {
             return await jwt.verify(token, process.env.JWT_SECRET);
         } catch (e) {
