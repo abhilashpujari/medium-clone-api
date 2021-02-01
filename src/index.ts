@@ -19,6 +19,10 @@ app.use(bodyParser.json());
 app.use('/api', routes);
 
 // Handle 404 - Keep this as a last route
+app.use(function (req, res, next) {
+    res.status(404).send({code: 404, message: 'Unable to find the requested resource!'});
+});
+
 app.use(errorHandler);
 
 // Initialize database connection
