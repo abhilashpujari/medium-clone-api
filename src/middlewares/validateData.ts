@@ -1,13 +1,13 @@
 import {ObjectSchema} from "joi";
-import HttpBadRequestException from "../exceptions/HttpBadRequestException";
+import ValidationException from "../exceptions/ValidationException";
 
-function validateData(schema: ObjectSchema, data: object) {
+function validateData(schema: ObjectSchema) {
     return async (req, res, next) => {
         try {
-            await schema.validateAsync(data, {abortEarly: false});
+            req.body = await schema.validateAsync(req.body, {abortEarly: false});
             next();
         } catch (error) {
-            next(new HttpBadRequestException(error.details));
+            next(new ValidationException(error.details));
         }
     }
 }
