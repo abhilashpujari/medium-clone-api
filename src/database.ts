@@ -22,7 +22,7 @@ async function initDB(): Promise<Connection> {
         return connection;
     } catch (e) {
         console.log('Error while creating database connection');
-        logger.error(e.message);
+        logger.error(JSON.stringify(e));
         process.exit(1);
     }
 }
