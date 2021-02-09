@@ -5,7 +5,8 @@ import {
     ManyToOne,
     CreateDateColumn,
     UpdateDateColumn,
-    ManyToMany, JoinTable
+    ManyToMany,
+    JoinTable
 } from "typeorm";
 import {User} from "./User";
 import {Tag} from "./Tag";
@@ -24,7 +25,7 @@ export class Article {
     })
     description: string;
 
-    @Column()
+    @Column({default: 0})
     favoritesCount: number;
 
     @PrimaryGeneratedColumn()
@@ -32,12 +33,14 @@ export class Article {
 
     @Column({
         type: "varchar",
-        length: 50
+        unique: true,
+        length: 255
     })
     slug: string;
 
     @Column({
         type: "varchar",
+        unique: true,
         length: 255
     })
     title: string;

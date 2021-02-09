@@ -1,4 +1,10 @@
-import {Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate} from "typeorm";
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    BeforeInsert,
+    BeforeUpdate
+} from "typeorm";
 import Utils from "../utils/Utils";
 
 @Entity('users')
