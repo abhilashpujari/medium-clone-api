@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import slug from 'slug';
 
 class Utils {
 
@@ -8,6 +9,10 @@ class Utils {
 
     static async comparePassword(password: string, hashPassword: string): Promise<boolean> {
         return await bcrypt.compare(password, hashPassword);
+    }
+
+    static slugify(text: string): string {
+        return slug(text);
     }
 }
 
